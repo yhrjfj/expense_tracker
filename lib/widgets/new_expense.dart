@@ -51,7 +51,9 @@ class _NewExpenseState extends State<NewExpense> {
               SizedBox(
                 width: 100,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: const Text('Cancel'),
                 ),
               ),
