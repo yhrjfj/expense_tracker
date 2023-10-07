@@ -16,6 +16,7 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   void dispose() {
     _titleController.dispose();
+    _amountController.dispose();
     super.dispose();
   }
 
@@ -33,6 +34,15 @@ class _NewExpenseState extends State<NewExpense> {
               label: Text('Title'),
             ),
           ),
+          // Amount
+          TextField(
+            controller: _amountController,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              prefixText: '\$ ',
+              label: Text('Amount'),
+            ),
+          ),
           // Buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -41,9 +51,7 @@ class _NewExpenseState extends State<NewExpense> {
               SizedBox(
                 width: 100,
                 child: ElevatedButton(
-                  onPressed: () {
-                    print(_titleController.text);
-                  },
+                  onPressed: () {},
                   child: const Text('Cancel'),
                 ),
               ),
@@ -56,6 +64,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: ElevatedButton(
                   onPressed: () {
                     print(_titleController.text);
+                    print(_amountController.text);
                   },
                   child: const Text('Save'),
                 ),
