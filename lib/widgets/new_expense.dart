@@ -42,6 +42,35 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  // Submit button functionality
+  void _submitExpenseData() {
+    final enteredAmount = double.tryParse(_amountController.text);
+    final amountIsValid = enteredAmount == null || enteredAmount <= 0;
+    if (_titleController.text.trim().isEmpty ||
+        amountIsValid ||
+        _selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Invalid Input'),
+          content: const Text(
+              'Please make sure you entered all correct information'),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text('Okay'),
+            ),
+          ],
+        ),
+      );
+      return;
+    } else {
+      // Your code to save valid data goes here.
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -142,10 +171,7 @@ class _NewExpenseState extends State<NewExpense> {
               SizedBox(
                 width: 100,
                 child: ElevatedButton(
-                  onPressed: () {
-                    // print(_titleController.text);
-                    // print(_amountController.text);
-                  },
+                  onPressed: _submitExpenseData,
                   child: const Text('Save'),
                 ),
               ),
