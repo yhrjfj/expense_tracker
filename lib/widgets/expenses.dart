@@ -41,11 +41,16 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
-  // Add new expense list in main screen
+  // Add new expense list in main list
   void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
     });
+  }
+
+  // Remove an expense form the main list
+  void _removeExpense(Expense expense) {
+    _registeredExpenses.remove(expense);
   }
 
   @override
@@ -67,7 +72,10 @@ class _ExpensesState extends State<Expenses> {
         children: [
           const Text('The Chart'),
           Expanded(
-            child: ExpensesList(expenses: _registeredExpenses),
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+              onRemoveExpense: _removeExpense,
+            ),
           ),
         ],
       ),
